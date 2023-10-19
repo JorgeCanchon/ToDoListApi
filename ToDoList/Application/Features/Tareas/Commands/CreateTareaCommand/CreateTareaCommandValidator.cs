@@ -20,6 +20,10 @@ namespace Application.Features.Tareas.Commands.CreateTareaCommand
             RuleFor(p => p.CategoriaId)
                 .NotEmpty().WithMessage("{PropertyName} no puede estar vacio.")
                 .GreaterThan(0).WithMessage("{PropertyName} debe ser numerico mayor a 0.");
+
+            RuleFor(p => p.Estado)
+                .NotEmpty().WithMessage("{PropertyName} no puede estar vacio.")
+                .MaximumLength(30).WithMessage("{PropertyName} no debe exceder de {MaxLength}");
         }
     }
 }

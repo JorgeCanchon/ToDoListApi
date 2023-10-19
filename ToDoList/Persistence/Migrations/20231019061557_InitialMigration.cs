@@ -18,7 +18,7 @@ namespace Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
-                    Estado = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
+                    Activo = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
                     FechaCreacion = table.Column<DateTime>(type: "datetime2", maxLength: 30, nullable: false),
                     UltimaFechaModificacion = table.Column<DateTime>(type: "datetime2", maxLength: 30, nullable: true)
                 },
@@ -37,7 +37,8 @@ namespace Persistence.Migrations
                     Descripcion = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     FechaLimite = table.Column<DateTime>(type: "datetime2", maxLength: 30, nullable: false),
                     CategoriaId = table.Column<int>(type: "int", maxLength: 30, nullable: false),
-                    Estado = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
+                    Estado = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Activo = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
                     FechaCreacion = table.Column<DateTime>(type: "datetime2", maxLength: 30, nullable: false),
                     UltimaFechaModificacion = table.Column<DateTime>(type: "datetime2", maxLength: 30, nullable: true)
                 },
@@ -55,8 +56,7 @@ namespace Persistence.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Tareas_CategoriaId",
                 table: "Tareas",
-                column: "CategoriaId",
-                unique: true);
+                column: "CategoriaId");
         }
 
         /// <inheritdoc />

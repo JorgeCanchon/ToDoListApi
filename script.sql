@@ -7,7 +7,7 @@ GO
 CREATE TABLE [dbo].[Categorias](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [nvarchar](80) NOT NULL,
-	[Estado] [bit] NOT NULL,
+	[Activo] [bit] NOT NULL,
 	[FechaCreacion] [datetime2](7) NOT NULL,
 	[UltimaFechaModificacion] [datetime2](7) NULL,
  CONSTRAINT [PK_Categorias] PRIMARY KEY CLUSTERED 
@@ -17,7 +17,7 @@ CREATE TABLE [dbo].[Categorias](
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[Categorias] ADD  DEFAULT (CONVERT([bit],(1))) FOR [Estado]
+ALTER TABLE [dbo].[Categorias] ADD  DEFAULT (CONVERT([bit],(1))) FOR [Activo]
 GO
 
 CREATE TABLE [dbo].[Tareas](
@@ -26,7 +26,8 @@ CREATE TABLE [dbo].[Tareas](
 	[Descripcion] [nvarchar](300) NOT NULL,
 	[FechaLimite] [datetime2](7) NOT NULL,
 	[CategoriaId] [int] NOT NULL,
-	[Estado] [bit] NOT NULL,
+	[Estado] [nvarchar](30) NOT NULL,
+	[Activo] [bit] NOT NULL,
 	[FechaCreacion] [datetime2](7) NOT NULL,
 	[UltimaFechaModificacion] [datetime2](7) NULL,
  CONSTRAINT [PK_Tareas] PRIMARY KEY CLUSTERED 
@@ -36,7 +37,7 @@ CREATE TABLE [dbo].[Tareas](
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[Tareas] ADD  DEFAULT (CONVERT([bit],(1))) FOR [Estado]
+ALTER TABLE [dbo].[Tareas] ADD  DEFAULT (CONVERT([bit],(1))) FOR [Activo]
 GO
 
 ALTER TABLE [dbo].[Tareas]  WITH CHECK ADD  CONSTRAINT [FK_Tareas_Categorias_CategoriaId] FOREIGN KEY([CategoriaId])

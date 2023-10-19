@@ -9,6 +9,7 @@ namespace Domain.Entities
         public DateTime FechaLimite { get; set;}
         public int CategoriaId { get; set;}
         public virtual Categoria Categoria { get; set;}
-        public bool Estado { get; set; }
+        public string Estado { get; set;}
+        public bool Activo { get; set; }
     }
 }

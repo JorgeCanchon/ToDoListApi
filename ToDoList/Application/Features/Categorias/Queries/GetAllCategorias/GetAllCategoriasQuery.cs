@@ -23,7 +23,7 @@ namespace Application.Features.Categorias.Queries.GetAllCategorias
 
             public async Task<Response<List<CategoriaDto>>> Handle(GetAllCategoriasQuery request, CancellationToken cancellationToken)
             {
-                var categorias = await _repositoryAsync.ListAsync(new EstadoCategoriaSpecification(true));
+                var categorias = await _repositoryAsync.ListAsync(new ActivoCategoriaSpecification(true));
                 if (!categorias.Any())
                 {
                     throw new KeyNotFoundException($"No existen registros para mostrar");

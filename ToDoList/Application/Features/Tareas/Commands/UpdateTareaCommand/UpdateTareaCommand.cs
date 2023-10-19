@@ -14,6 +14,7 @@ namespace Application.Features.Tareas.Commands.UpdateTareaCommand
         public string Descripcion { get; set; }
         public int CategoriaId { get; set; }
         public DateTime FechaLimite { get; set; }
+        public string Estado { get; set; }
     }
 
     public class UpdateTareaCommandHandler : IRequestHandler<UpdateTareaCommand, Response<int>>
@@ -29,7 +30,7 @@ namespace Application.Features.Tareas.Commands.UpdateTareaCommand
 
         public async Task<Response<int>> Handle(UpdateTareaCommand request, CancellationToken cancellationToken)
         {
-            var tarea = await _repositoryAsync.GetBySpecAsync(new EstadoTareaByIdSpecification(request.Id, true));
+            var tarea = await _repositoryAsync.GetBySpecAsync(new ActivoTareaByIdSpecification(request.Id, true));
             if (tarea == null)
             {
                 throw new KeyNotFoundException($"Registro no encontrado con el id {request.Id}");
@@ -38,6 +39,7 @@ namespace Application.Features.Tareas.Commands.UpdateTareaCommand
             tarea.Titulo = request.Titulo;
             tarea.Descripcion = request.Descripcion;
             tarea.CategoriaId = request.CategoriaId;
+            tarea.Estado = request.Estado;
 
             await _repositoryAsync.UpdateAsync(tarea);
 

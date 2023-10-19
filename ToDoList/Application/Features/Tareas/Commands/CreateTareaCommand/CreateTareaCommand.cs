@@ -12,6 +12,7 @@ namespace Application.Features.Tareas.Commands.CreateTareaCommand
         public string Descripcion { get; set; }
         public int CategoriaId { get; set; }
         public DateTime FechaLimite { get; set; }
+        public string Estado { get; set; }
     }
 
     public class CreateTareaCommandHandler : IRequestHandler<CreateTareaCommand, Response<int>>
@@ -28,7 +29,7 @@ namespace Application.Features.Tareas.Commands.CreateTareaCommand
         public async Task<Response<int>> Handle(CreateTareaCommand request, CancellationToken cancellationToken)
         {
             var nuevoRegistro = _mapper.Map<Tarea>(request);
-            nuevoRegistro.Estado = true;
+            nuevoRegistro.Activo = true;
             var data = await _repositoryAsync.AddAsync(nuevoRegistro);
             return new Response<int>(data.Id);
         }

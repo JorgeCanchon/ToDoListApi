@@ -25,7 +25,7 @@ namespace Application.Features.Categorias.Commands.CreateCategoriaCommand
         public async Task<Response<int>> Handle(CreateCategoriaCommand request, CancellationToken cancellationToken)
         {
             var nuevoRegistro = _mapper.Map<Categoria>(request);
-            nuevoRegistro.Estado = true;
+            nuevoRegistro.Activo = true;
             var data = await _repositoryAsync.AddAsync(nuevoRegistro);
             return new Response<int>(data.Id);
         }

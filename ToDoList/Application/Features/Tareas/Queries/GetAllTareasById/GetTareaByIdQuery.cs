@@ -24,7 +24,7 @@ namespace Application.Features.Tareas.Queries.GetAllTareaById
 
             public async Task<Response<TareaDto>> Handle(GetTareaByIdQuery request, CancellationToken cancellationToken)
             {
-                var tarea = await _repositoryAsync.GetBySpecAsync(new EstadoTareaByIdSpecification(request.Id, true));
+                var tarea = await _repositoryAsync.GetBySpecAsync(new ActivoTareaByIdSpecification(request.Id, true));
                 if (tarea == null)
                 {
                     throw new KeyNotFoundException($"Registro no encontrado con el id {request.Id}");

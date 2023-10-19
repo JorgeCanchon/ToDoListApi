@@ -10,6 +10,7 @@ namespace Persistence.Configuration
         {
             builder.ToTable("Tareas");
             builder.HasKey(c => c.Id);
+            builder.HasIndex(c => c.CategoriaId).IsUnique(false);
 
             builder.Property(p => p.Titulo)
                 .HasColumnName("Titulo")
@@ -40,7 +41,11 @@ namespace Persistence.Configuration
                 .HasMaxLength(30);
 
             builder.Property(p => p.Estado)
-                .HasColumnName("Estado").HasDefaultValue(1);
+              .HasColumnName("Estado")
+              .HasMaxLength(30);
+            
+            builder.Property(p => p.Activo)
+                .HasColumnName("Activo").HasDefaultValue(1);
         }
     }
 }

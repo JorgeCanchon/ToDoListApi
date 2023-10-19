@@ -23,13 +23,13 @@ namespace Application.Features.Categorias.Commands.DeleteCategoriaCommand
 
         public async Task<Response<int>> Handle(DeleteCategoriaCommand request, CancellationToken cancellationToken)
         {
-            var categoria = await _repositoryAsync.GetBySpecAsync(new EstadoCategoriaByIdSpecification(request.Id, true));
+            var categoria = await _repositoryAsync.GetBySpecAsync(new ActivoCategoriaByIdSpecification(request.Id, true));
             if (categoria == null)
             {
                 throw new KeyNotFoundException($"Registro no encontrado con el id {request.Id}");
             }
 
-            categoria.Estado = false;
+            categoria.Activo = false;
 
             await _repositoryAsync.UpdateAsync(categoria);
 

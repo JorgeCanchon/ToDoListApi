@@ -23,13 +23,13 @@ namespace Application.Features.Tareas.Commands.DeleteTareaCommand
 
         public async Task<Response<int>> Handle(DeleteTareaCommand request, CancellationToken cancellationToken)
         {
-            var tarea = await _repositoryAsync.GetBySpecAsync(new EstadoTareaByIdSpecification(request.Id, true));
+            var tarea = await _repositoryAsync.GetBySpecAsync(new ActivoTareaByIdSpecification(request.Id, true));
             if (tarea == null)
             {
                 throw new KeyNotFoundException($"Registro no encontrado con el id {request.Id}");
             }
 
-            tarea.Estado = false;
+            tarea.Activo = false;
 
             await _repositoryAsync.UpdateAsync(tarea);
 

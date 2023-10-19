@@ -24,7 +24,7 @@ namespace Application.Features.Tareas.Queries.GetAllTareas
 
             public async Task<Response<List<TareaDto>>> Handle(GetAllTareasQuery request, CancellationToken cancellationToken)
             {
-                var tareas = await _repositoryAsync.ListAsync(new EstadoTareaSpecification(true));
+                var tareas = await _repositoryAsync.ListAsync(new ActivoTareaSpecification(true));
                 if (!tareas.Any())
                 {
                     throw new KeyNotFoundException($"No existen registros para mostrar");

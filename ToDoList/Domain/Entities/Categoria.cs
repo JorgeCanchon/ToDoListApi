@@ -6,6 +6,6 @@ namespace Domain.Entities
     {
         public string Nombre { get; set; }
         public virtual Tarea Tarea { get; set; }
-        public bool Estado { get; set; }
+        public bool Activo { get; set; }
     }
 }

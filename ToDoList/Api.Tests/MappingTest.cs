@@ -4,21 +4,16 @@ using Application.Features.Tareas.Commands.CreateTareaCommand;
 using AutoMapper;
 using Domain.Entities;
 
-namespace Application.Mappings
+namespace Api.Tests
 {
-    public class GeneralProfile : Profile
+    public class MappingTest : Profile
     {
-        public GeneralProfile()
+        public MappingTest()
         {
-            #region DTOs
             CreateMap<Categoria, CategoriaDto>();
             CreateMap<Tarea, TareaDto>();
-            #endregion
-
-            #region Commands
             CreateMap<CreateCategoriaCommand, Categoria>().ReverseMap();
             CreateMap<CreateTareaCommand, Tarea>().ReverseMap();
-            #endregion
         }
     }
 }

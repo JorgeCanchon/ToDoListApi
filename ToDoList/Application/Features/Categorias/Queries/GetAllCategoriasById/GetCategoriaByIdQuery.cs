@@ -24,7 +24,7 @@ namespace Application.Features.Categorias.Queries.GetAllCategoriasById
 
             public async Task<Response<CategoriaDto>> Handle(GetCategoriaByIdQuery request, CancellationToken cancellationToken)
             {
-                var categoria = await _repositoryAsync.GetBySpecAsync(new EstadoCategoriaByIdSpecification(request.Id, true));
+                var categoria = await _repositoryAsync.GetBySpecAsync(new ActivoCategoriaByIdSpecification(request.Id, true));
                 if (categoria == null)
                 {
                     throw new KeyNotFoundException($"Registro no encontrado con el id {request.Id}");

@@ -16,6 +16,11 @@ builder.Services.AddApplicationLayer();
 builder.Services.AddSharedInfraestructure(builder.Configuration);
 builder.Services.AddPersistenceInfraestructure(builder.Configuration);
 builder.Services.AddApiVersionExtension();
+//services cors
+builder.Services.AddCors(policyBuilder =>
+    policyBuilder.AddDefaultPolicy(policy =>
+        policy.WithOrigins("*").AllowAnyHeader().AllowAnyHeader())
+);
 
 var app = builder.Build();
 
@@ -31,7 +36,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.UseErrorHandlingMiddleware();
-
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("*"));
 app.MapControllers();
 
 app.Run();

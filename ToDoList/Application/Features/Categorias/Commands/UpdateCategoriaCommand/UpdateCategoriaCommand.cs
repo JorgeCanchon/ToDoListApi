@@ -27,7 +27,7 @@ namespace Application.Features.Categorias.Commands.UpdateCategoriaCommand
 
         public async Task<Response<int>> Handle(UpdateCategoriaCommand request, CancellationToken cancellationToken)
         {
-            var categoria = await _repositoryAsync.GetBySpecAsync(new EstadoCategoriaByIdSpecification(request.Id, true));
+            var categoria = await _repositoryAsync.GetBySpecAsync(new ActivoCategoriaByIdSpecification(request.Id, true));
             if (categoria == null)
             {
                 throw new KeyNotFoundException($"Registro no encontrado con el id {request.Id}");

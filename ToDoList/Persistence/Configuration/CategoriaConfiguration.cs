@@ -1,6 +1,8 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Reflection.Emit;
+using System.Reflection.Metadata;
 
 namespace Persistence.Configuration
 {
@@ -24,8 +26,13 @@ namespace Persistence.Configuration
                 .HasColumnName("UltimaFechaModificacion")
                 .HasMaxLength(30);
 
-            builder.Property(p => p.Estado)
-               .HasColumnName("Estado").HasDefaultValue(1);
+            builder.Property(p => p.Activo)
+               .HasColumnName("Activo").HasDefaultValue(1);
+
+           builder.HasOne(e => e.Tarea)
+              .WithOne(e => e.Categoria)
+              .HasForeignKey<Tarea>(e => e.CategoriaId)
+              .IsRequired();
         }
     }
 }

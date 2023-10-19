@@ -30,16 +30,16 @@ namespace Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("Activo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true)
+                        .HasColumnName("Activo");
+
                     b.Property<DateTime>("Created")
                         .HasMaxLength(30)
                         .HasColumnType("datetime2")
                         .HasColumnName("FechaCreacion");
-
-                    b.Property<bool>("Estado")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true)
-                        .HasColumnName("Estado");
 
                     b.Property<DateTime?>("LastModified")
                         .HasMaxLength(30)
@@ -65,6 +65,12 @@ namespace Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("Activo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true)
+                        .HasColumnName("Activo");
+
                     b.Property<int>("CategoriaId")
                         .HasMaxLength(30)
                         .HasColumnType("int")
@@ -81,10 +87,10 @@ namespace Persistence.Migrations
                         .HasColumnType("nvarchar(300)")
                         .HasColumnName("Descripcion");
 
-                    b.Property<bool>("Estado")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true)
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)")
                         .HasColumnName("Estado");
 
                     b.Property<DateTime>("FechaLimite")
@@ -105,8 +111,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoriaId")
-                        .IsUnique();
+                    b.HasIndex("CategoriaId");
 
                     b.ToTable("Tareas", (string)null);
                 });
